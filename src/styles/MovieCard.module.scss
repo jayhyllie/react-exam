@@ -1,0 +1,21 @@
+.movieCard {
+    background-color: white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .45);
+    &__image {
+        width: 300px;
+        aspect-ratio: 1;
+        margin: auto;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+    }
+    &__info {
+        color: white;
+        text-shadow: 0.1px 0.1px 2px rgba(0, 0, 0, .45);
+        background-color: palevioletred;
+        h2 {
+            margin-block-start: 0;
+            margin-block-end: 0;
+        }
+    }
+}
