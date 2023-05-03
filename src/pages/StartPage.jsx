@@ -5,12 +5,12 @@ import MovieCard from "../components/MovieCard";
 
 function StartPage() {
   const dispatch = useDispatch();
-  const movieList = useSelector((state) => state.movies.movieList);
-  const loading = useSelector((state) => state.movies.loading);
-  const error = useSelector((state) => state.movies.error);
+  const movieList = useSelector((state) => state.movieList);
+  const loading = useSelector((state) => state.loading);
+  const error = useSelector((state) => state.error);
 
   useEffect(() => {
-    dispatch(fetchMovies("Avengers"));
+    dispatch(fetchMovies("AVENGERS"));
   }, [dispatch]);
 
   if (loading) {
