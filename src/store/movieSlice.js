@@ -35,14 +35,22 @@ export const movieSlice = createSlice({
         (movie) => movie.id !== action.payload
       );
     },
+    setMovieList: (state, action) => {
+      state.movieList = action.payload;
+    },
+    addToWatched: (state, action) => {
+      state.watchedList.push(action.payload);
+    },
+    removeFromCurrentList: (state, action) => {
+      state.movieList = state.movieList.filter(
+        (movie) => movie.id !== action.payload.id
+      );
+    },
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
     setError: (state, action) => {
       state.error = action.payload;
-    },
-    setMovieList: (state, action) => {
-      state.movieList = action.payload;
     },
   }
 });
@@ -54,6 +62,8 @@ export const {
   setLoading,
   setError,
   setMovieList,
+  addToWatched,
+  removeFromCurrentList
 } = movieSlice.actions;
 
 export const fetchMovies = (searchTerm) => async (dispatch) => {

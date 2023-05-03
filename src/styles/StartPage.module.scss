@@ -1,0 +1,15 @@
+.MovieList {
+    display: grid;
+    grid-template-columns: 100%;
+    grid-auto-rows: auto;
+    gap: 1em;
+    list-style: none;
+    padding: 2em;
+}
+@media screen and (min-width: 50em) {
+    .MovieList {
+        max-width: 1200px;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 4em;
+    }
+}

@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchMovies } from "../store/movieSlice";
 import MovieCard from "../components/MovieCard";
+import style from '../styles/StartPage.module.scss';
 
 function StartPage() {
   const dispatch = useDispatch();
@@ -9,8 +10,10 @@ function StartPage() {
   const loading = useSelector((state) => state.loading);
   const error = useSelector((state) => state.error);
 
+  console.log(movieList);
+
   useEffect(() => {
-    dispatch(fetchMovies("AVENGERS"));
+    dispatch(fetchMovies("ACTION"));
   }, [dispatch]);
 
   if (loading) {
@@ -24,7 +27,7 @@ function StartPage() {
   return (
     <main>
       <h1>Movies</h1>
-      <ul>
+      <ul className={style.MovieList}>
         {movieList.map((movie) => (
           <MovieCard movie={movie} key={movie.imdbID} haveSeen={false} />
         ))}

@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeFromSeenList } from "../store/movieSlice";
+import { AddToWatchedButton, MovieInfoButton } from "./Buttons";
 import style from "../styles/MovieCard.module.scss";
 import Button from "./Button";
 
@@ -35,6 +36,10 @@ function MovieCard({ movie, haveSeen }) {
         <Link to={"/movieinfo/" + movie.imdbID + "/" + movie.Title}>
           <article className={style.MovieCard}>
             <MovieCardContent movie={movie} />
+            <section className={style.MovieCard__buttons}>
+              <AddToWatchedButton movie={movie} />
+              <MovieInfoButton movie={movie} />
+            </section>
           </article>
         </Link>
       )}
