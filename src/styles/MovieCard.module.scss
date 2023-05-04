@@ -3,7 +3,7 @@
     box-shadow: 2px 2px 2em rgba(0, 0, 0, .45);
     padding: 1em;
     &__image {
-        width: 300px;
+        width: 200px;
         aspect-ratio: 1;
         margin: auto;
         background-repeat: no-repeat;
@@ -32,7 +32,7 @@ button {
     background-color: rgb(21, 135, 123);
     border: none;
     border-radius: .5em;
-    padding: 1em 2em;
+    padding: 1em;
 }
 a {
     text-decoration: none;

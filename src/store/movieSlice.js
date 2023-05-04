@@ -1,9 +1,9 @@
 import axios from "axios";
 import { createSlice, createAction } from "@reduxjs/toolkit";
 
-const API_URL = "https://movie-database-alternative.p.rapidapi.com/";
+const API_URL = "https://advanced-movie-search.p.rapidapi.com/discover/movie";
 const API_KEY = "b030f6f236mshe4bcd1634bbce08p19d65bjsn7e28c74d7b09";
-const API_HOST = "movie-database-alternative.p.rapidapi.com";
+const API_HOST = "advanced-movie-search.p.rapidapi.com";
 
 const initialState = {
   movieList: [],
@@ -66,16 +66,16 @@ export const {
   removeFromCurrentList
 } = movieSlice.actions;
 
-export const fetchMovies = (searchTerm) => async (dispatch) => {
+export const fetchMovies = (genre) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
-    const response = await axios.get(`${API_URL}?s=${searchTerm}`, {
+    const response = await axios.get(`${API_URL}?with_genres=${genre}&page=1`, {
       headers: {
         "X-RapidAPI-Key": API_KEY,
         "X-RapidAPI-Host": API_HOST,
-      },
+      }
     });
-    dispatch(setMovieList(response.data.Search));
+    dispatch(setMovieList(response.data.results));
   } catch (error) {
     dispatch(setError(error.message));
   } finally {

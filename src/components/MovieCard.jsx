@@ -10,12 +10,12 @@ function MovieCardContent({ movie }) {
     <li>
       <section className={style.MovieCard__image}
         style={{
-          backgroundImage: `url(${movie.Poster})`,
+          backgroundImage: `url(${movie.poster_path})`,
         }}
       ></section>
       <section className={style.MovieCard__info}>
-        <h2>{movie.Title}</h2>
-        <p>{movie.Year}</p>
+        <h2>{movie.title}</h2>
+        <p>{movie.release_date}</p>
       </section>
     </li>
   );
@@ -33,7 +33,7 @@ function MovieCard({ movie, haveSeen }) {
           </section>
         </article>
       ) : (
-        <Link to={"/movieinfo/" + movie.imdbID + "/" + movie.Title}>
+        <Link to={"/movieinfo/" + movie.id + "/" + movie.title}>
           <article className={style.MovieCard}>
             <MovieCardContent movie={movie} />
             <section className={style.MovieCard__buttons}>

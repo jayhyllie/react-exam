@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { fetchMovies } from "../store/movieSlice";
 import MovieCard from "../components/MovieCard";
 import style from '../styles/StartPage.module.scss';
+import Selector from "../components/Selector";
 
 function StartPage() {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ function StartPage() {
   const error = useSelector((state) => state.error);
 
   useEffect(() => {
-    dispatch(fetchMovies("ACTION"));
+    dispatch(fetchMovies("action"));
   }, [dispatch]);
 
   if (loading) {
@@ -25,9 +26,10 @@ function StartPage() {
   return (
     <main>
       <h1>Movies</h1>
+      <Selector />
       <ul className={style.MovieList}>
         {movieList.map((movie) => (
-          <MovieCard movie={movie} key={movie.imdbID} haveSeen={false} />
+          <MovieCard movie={movie} key={movie.id} haveSeen={false} />
         ))}
       </ul>
     </main>
