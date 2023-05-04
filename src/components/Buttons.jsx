@@ -15,9 +15,8 @@ export const AddToWatchedButton = ({ movie }) => {
 
 // Komponent för att länka till film info sida
 export const MovieInfoButton = ({ movie }) => {
-    console.log(movie);
   return (
-    <button> Se info
+    <button> More info
      {/*  <Link to={"/movieinfo/" + movie.imdbID + "/" + movie.Title}>Movie Info</Link> */}
     </button>
   );

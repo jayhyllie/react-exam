@@ -10,8 +10,6 @@ function StartPage() {
   const loading = useSelector((state) => state.loading);
   const error = useSelector((state) => state.error);
 
-  console.log(movieList);
-
   useEffect(() => {
     dispatch(fetchMovies("ACTION"));
   }, [dispatch]);

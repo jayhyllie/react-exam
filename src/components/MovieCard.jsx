@@ -27,10 +27,10 @@ function MovieCard({ movie, haveSeen }) {
       {haveSeen ? (
         <article className={style.MovieCard}>
           <MovieCardContent movie={movie} />
-          <Button
-            title="Remove"
-            action={() => dispatch(removeFromSeenList(movie))}
-          />
+          <section className={style.MovieCard__buttons}>
+            <AddToWatchedButton movie={movie} />
+            <MovieInfoButton movie={movie} />
+          </section>
         </article>
       ) : (
         <Link to={"/movieinfo/" + movie.imdbID + "/" + movie.Title}>

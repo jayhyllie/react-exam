@@ -39,7 +39,7 @@ export const movieSlice = createSlice({
       state.movieList = action.payload;
     },
     addToWatched: (state, action) => {
-      state.watchedList.push(action.payload);
+      state.seenList.push(action.payload);
     },
     removeFromCurrentList: (state, action) => {
       state.movieList = state.movieList.filter(
