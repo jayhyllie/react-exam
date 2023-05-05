@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { fetchMovies } from '../store/movieSlice';
 
 function Selector() {
-    const [selected, setSelected] = useState("action");
+    const [selected, setSelected] = useState("");
     const dispatch = useDispatch();
 
     function handleChange(e) {
@@ -14,6 +14,7 @@ function Selector() {
     <div className={style.Selector}>
       <label htmlFor="movie-genre">Choose your genre:</label>
       <select name="movie-genre" id="movie-genre" onChange={handleChange}>
+        <option value="choose">Choose...</option>
         <option value="action">Action</option>
         <option value="romance">Romance</option>
         <option value="drama">Drama</option>

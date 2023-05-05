@@ -1,7 +1,10 @@
+@import 'variables';
+@import 'mixins';
+
 #root {
-  display: grid;
-  place-content: center;
+  @include gridCenter;
   margin: 0 auto;
   text-align: center;
+  background: $main-color-dark;
 }
 

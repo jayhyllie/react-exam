@@ -1,9 +1,6 @@
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
-import { removeFromSeenList } from "../store/movieSlice";
 import { AddToWatchedButton, MovieInfoButton } from "./Buttons";
 import style from "../styles/MovieCard.module.scss";
-import Button from "./Button";
 
 function MovieCardContent({ movie }) {
   return (
@@ -15,7 +12,7 @@ function MovieCardContent({ movie }) {
       ></section>
       <section className={style.MovieCard__info}>
         <h2>{movie.title}</h2>
-        <p>{movie.release_date}</p>
+        <p>Released: {movie.release_date}</p>
       </section>
     </li>
   );
@@ -28,20 +25,18 @@ function MovieCard({ movie, haveSeen }) {
         <article className={style.MovieCard}>
           <MovieCardContent movie={movie} />
           <section className={style.MovieCard__buttons}>
-            <AddToWatchedButton movie={movie} />
-            <MovieInfoButton movie={movie} />
+            <AddToWatchedButton movie={movie} path='/watched' />
+            <MovieInfoButton movie={movie} path='/movieinfo'/>
           </section>
         </article>
       ) : (
-        <Link to={"/movieinfo/" + movie.id + "/" + movie.title}>
-          <article className={style.MovieCard}>
-            <MovieCardContent movie={movie} />
-            <section className={style.MovieCard__buttons}>
-              <AddToWatchedButton movie={movie} />
-              <MovieInfoButton movie={movie} />
-            </section>
-          </article>
-        </Link>
+        <article className={style.MovieCard}>
+          <MovieCardContent movie={movie} />
+          <section className={style.MovieCard__buttons}>
+            <AddToWatchedButton movie={movie} path='/watched' />
+            <MovieInfoButton movie={movie} path='/movieinfo'/>
+          </section>
+        </article>
       )}
     </>
   );

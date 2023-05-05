@@ -1,9 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchMovies } from "../store/movieSlice";
 import MovieCard from "../components/MovieCard";
 import style from '../styles/StartPage.module.scss';
-import Selector from "../components/Selector";
 
 function StartPage() {
   const dispatch = useDispatch();
@@ -11,12 +10,10 @@ function StartPage() {
   const loading = useSelector((state) => state.loading);
   const error = useSelector((state) => state.error);
 
-  useEffect(() => {
-    dispatch(fetchMovies("action"));
-  }, [dispatch]);
+  const [selected, setSelected] = useState("");
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className={style.loading}>Loading...</div>;
   }
 
   if (error) {
@@ -26,7 +23,18 @@ function StartPage() {
   return (
     <main>
       <h1>Movies</h1>
-      <Selector />
+      <div className={style.Selector}>
+        <label htmlFor="movie-genre" className={style.Selector__label}>Choose your genre:</label>
+        <select className={style.Selector__select} name="movie-genre" id="movie-genre" value={selected} onChange={e => dispatch(fetchMovies(e.target.value))}>
+          <option value="choose">Choose...</option>
+          <option value="action">Action</option>
+          <option value="romance">Romance</option>
+          <option value="drama">Drama</option>
+          <option value="science_fiction">Sci-Fi</option>
+          <option value="thriller">Thriller</option>
+          <option value="horror">Horror</option>
+        </select>
+      </div>
       <ul className={style.MovieList}>
         {movieList.map((movie) => (
           <MovieCard movie={movie} key={movie.id} haveSeen={false} />

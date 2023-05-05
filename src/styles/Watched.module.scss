@@ -1,0 +1,7 @@
+@import 'mixins';
+.watched {
+    min-height: 100vh;
+    @include gridCenter;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+}

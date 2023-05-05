@@ -69,6 +69,7 @@ export const {
 export const fetchMovies = (genre) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
+    console.log(genre);
     const response = await axios.get(`${API_URL}?with_genres=${genre}&page=1`, {
       headers: {
         "X-RapidAPI-Key": API_KEY,
@@ -76,6 +77,7 @@ export const fetchMovies = (genre) => async (dispatch) => {
       }
     });
     dispatch(setMovieList(response.data.results));
+    console.log(response.data.results);
   } catch (error) {
     dispatch(setError(error.message));
   } finally {
