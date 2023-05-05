@@ -1,5 +1,4 @@
-import { useDispatch } from "react-redux";
-import { AddToWatchedButton, MovieInfoButton } from "./Buttons";
+import { AddToWatchedButton, MovieInfoButton, RemoveFromWatchedButton } from "./Buttons";
 import style from "../styles/MovieCard.module.scss";
 
 function MovieCardContent({ movie }) {
@@ -18,14 +17,13 @@ function MovieCardContent({ movie }) {
   );
 }
 function MovieCard({ movie, haveSeen }) {
-  const dispatch = useDispatch();
   return (
     <>
       {haveSeen ? (
         <article className={style.MovieCard}>
           <MovieCardContent movie={movie} />
           <section className={style.MovieCard__buttons}>
-            <AddToWatchedButton movie={movie} path='/watched' />
+            <RemoveFromWatchedButton movie={movie} />
             <MovieInfoButton movie={movie} path='/movieinfo'/>
           </section>
         </article>

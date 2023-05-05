@@ -4,6 +4,11 @@
     display: grid;
     place-content: center;
 }
+@mixin gridColumns($columns) {
+    display: grid;
+    grid-template-columns: $columns;
+    grid-auto-rows: auto;
+}
 @mixin flexCenter($direction) {
     display: flex;
     flex-direction: $direction;
@@ -17,33 +22,17 @@
     justify-content: space-between;
     align-items: center;
 }
-
-@mixin h1 {
-    font-size: $font-size-h1;
-    color: $color-h1;
-    font-family: $font-family-headings;
-    line-height: $line-height-headings;
+@mixin flexEvenly($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-@mixin h2 {
-    font-size: $font-size-h2;
-    color: $color-h2;
-    font-family: $font-family-headings;
-    line-height: $line-height-headings;
-}
-
-@mixin h3 {
-    font-size: $font-size-h3;
-    color: $color-h3;
-    font-family: $font-family-headings;
-    line-height: $line-height-headings;
-}
-
-@mixin p {
-    font-size: $font-size-paragraph;
-    color: $color-paragraph;
-    font-family: $font-family-paragraph;
-    line-height: $line-height-paragraph;
+@mixin bgImageContain($position) {
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: $position;
 }
 
 @mixin pageContainer($background-color) {

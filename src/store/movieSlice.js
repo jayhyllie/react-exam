@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createSlice, createAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const API_URL = "https://advanced-movie-search.p.rapidapi.com/discover/movie";
 const API_KEY = "b030f6f236mshe4bcd1634bbce08p19d65bjsn7e28c74d7b09";
@@ -8,6 +8,7 @@ const API_HOST = "advanced-movie-search.p.rapidapi.com";
 const initialState = {
   movieList: [],
   seenList: [],
+  currentMovie: {},
   loading: false,
   error: null,
 };
@@ -19,27 +20,19 @@ export const movieSlice = createSlice({
     addMovie: (state, action) => {
       state.movieList.push(action.payload);
     },
-    addToSeenList: (state, action) => {
-      const movie = state.movieList.find(
-        (movie) => movie.id === action.payload
-      );
-      state.seenList.push(movie);
-      state.movieList = state.movieList.filter(
-        (movie) => movie.id !== action.payload
-      );
-    },
-    removeFromSeenList: (state, action) => {
-      const movie = state.seenList.find((movie) => movie.id === action.payload);
-      state.movieList.push(movie);
-      state.seenList = state.seenList.filter(
-        (movie) => movie.id !== action.payload
-      );
-    },
     setMovieList: (state, action) => {
       state.movieList = action.payload;
     },
+    setCurrentMovie: (state, action) => {
+      state.currentMovie = action.payload;
+    },
     addToWatched: (state, action) => {
       state.seenList.push(action.payload);
+    },
+    removeFromWatched: (state, action) => {
+      state.seenList = state.seenList.filter(
+        (movie) => movie.id !== action.payload.id
+      );
     },
     removeFromCurrentList: (state, action) => {
       state.movieList = state.movieList.filter(
@@ -52,18 +45,22 @@ export const movieSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
+    updateTitle: (state, action) => {
+      state.currentMovie.title = action.payload;
+    }
   }
 });
 
 export const {
   addMovie,
-  addToSeenList,
-  removeFromSeenList,
-  setLoading,
-  setError,
   setMovieList,
   addToWatched,
-  removeFromCurrentList
+  removeFromWatched,
+  removeFromCurrentList,
+  setLoading,
+  setCurrentMovie,
+  setError,
+  updateTitle
 } = movieSlice.actions;
 
 export const fetchMovies = (genre) => async (dispatch) => {
@@ -77,7 +74,6 @@ export const fetchMovies = (genre) => async (dispatch) => {
       }
     });
     dispatch(setMovieList(response.data.results));
-    console.log(response.data.results);
   } catch (error) {
     dispatch(setError(error.message));
   } finally {

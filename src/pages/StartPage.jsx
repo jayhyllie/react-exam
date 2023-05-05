@@ -10,8 +10,6 @@ function StartPage() {
   const loading = useSelector((state) => state.loading);
   const error = useSelector((state) => state.error);
 
-  const [selected, setSelected] = useState("");
-
   if (loading) {
     return <div className={style.loading}>Loading...</div>;
   }
@@ -25,7 +23,7 @@ function StartPage() {
       <h1>Movies</h1>
       <div className={style.Selector}>
         <label htmlFor="movie-genre" className={style.Selector__label}>Choose your genre:</label>
-        <select className={style.Selector__select} name="movie-genre" id="movie-genre" value={selected} onChange={e => dispatch(fetchMovies(e.target.value))}>
+        <select className={style.Selector__select} name="movie-genre" id="movie-genre" onChange={e => dispatch(fetchMovies(e.target.value))}>
           <option value="choose">Choose...</option>
           <option value="action">Action</option>
           <option value="romance">Romance</option>

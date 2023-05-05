@@ -1,0 +1,64 @@
+@import 'mixins';
+@import 'variables';
+
+.moviePage {
+    @include pageContainer($background-color--main);
+    @include gridCenter;
+    gap: 2em;
+
+    &__image {
+        min-width: 80vw;
+        height: 200px;
+        @include bgImageContain(center);
+    }
+    &__section {
+        width: 100%;
+        margin: 0 auto;
+        @include gridCenter;
+        gap: 2em;
+    }
+    &__description {
+        padding-inline: 4em;
+    }
+
+    &__info {
+        @include flexCenter(column);
+        gap: 1em;
+        font-size: $font-size-h3;
+    }
+    &__info > * {
+        outline: 1px solid $accent-color;
+        padding: .5em 1em;
+    }
+    &__form {
+       @include gridCenter;
+       gap: 1em; 
+    }
+    &__input {
+        background-color: $background-color--main;
+        border: 1px solid $accent-color;
+        box-shadow: 0px 0px 10px 5px rgba(0, 157, 89, 0.5);
+        padding: 1em 2em 1em 1em;
+        color: $main-color-light;
+    }
+    &__input:focus::placeholder {
+        color: transparent;
+    }
+}
+:focus-visible {
+    outline: none;
+}
+
+@media screen and (min-width: 50em) {
+    .moviePage {
+        &__info {
+            flex-direction: row;
+        }
+        &__section {
+            max-width: 60vw;
+        }
+        &__image {
+            height: 500px;
+        }
+    }
+}

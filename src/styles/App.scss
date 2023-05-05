@@ -3,8 +3,7 @@
 
 #root {
   @include gridCenter;
-  margin: 0 auto;
+  @include pageContainer($background-color--main);
   text-align: center;
-  background: $main-color-dark;
 }
 

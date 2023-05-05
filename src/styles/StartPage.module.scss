@@ -1,9 +1,7 @@
 @import 'mixins';
 
 .MovieList {
-    display: grid;
-    grid-template-columns: 100%;
-    grid-auto-rows: auto;
+    @include gridColumns(100%);
     gap: 1em;
     list-style: none;
     padding: 2em;
@@ -12,10 +10,13 @@
     @include gridCenter;
 }
 .Selector {
-    @include flexCenter(row);
+    @include gridCenter;
     gap: 1em;
 
     &__select {
+        background-color: $background-color--main;
+        color: $accent-color;
+        text-align: center;
         padding: .5em 1em;
     }
 }
@@ -24,5 +25,8 @@
         max-width: 1200px;
         grid-template-columns: repeat(4, 1fr);
         padding: 4em;
+    }
+    .Selector {
+        @include flexCenter(row);
     }
 }

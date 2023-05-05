@@ -1,14 +1,15 @@
+@import 'mixins';
+@import 'variables';
+
 .MovieCard {
-    background-color: transparent;
+    background-color: $background-color--card;
     box-shadow: 2px 2px 2em rgba(0, 0, 0, .45);
     padding: 1em;
     &__image {
         width: 200px;
         aspect-ratio: 1;
         margin: auto;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: contain;
+        @include bgImageContain(center);
     }
     &__info {
         color: white;
@@ -17,22 +18,23 @@
         h2 {
             margin-block-start: 0;
             margin-block-end: 0;
-            height: 72px;
+            height: 85px;
             overflow: hidden;
         }
     }
     &__buttons {
-        display: flex;
+        @include flexEvenly(row);
+        color: $main-color-light;
         gap: 1em;
-        justify-content: space-evenly;
         padding-bottom: 1em;
     }
 }
 button {
-    background-color: rgb(21, 135, 123);
+    background-color: $background-color--accent;
+    color: $main-color-light;
     border: none;
     border-radius: .5em;
-    padding: 1em;
+    padding: 1em .5em;
 }
 a {
     text-decoration: none;
